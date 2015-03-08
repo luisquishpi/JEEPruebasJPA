@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 import models.entities.Tema;
+import models.entities.Voto;
 
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 
@@ -26,6 +27,16 @@ public class HolaJPA {
         em.persist(t1);
         em.persist(new Tema("Tema 2", "Pregunta 2"));
         em.persist(new Tema("Tema 3", "Pregunta 3"));
+        em.getTransaction().commit();
+        
+        //Creando un voto
+        Voto v1 = new Voto();
+        v1.setTema(t1);
+        v1.setNivelEstudio("Nivel estudiante");
+        v1.setValor(9);
+        // Create
+        em.getTransaction().begin();
+        em.persist(v1);
         em.getTransaction().commit();
 	}
 
